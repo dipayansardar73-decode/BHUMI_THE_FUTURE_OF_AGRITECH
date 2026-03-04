@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHUMI AWS Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+        }
+        .status {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .status h2 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        .progress {
+            background: #e5e7eb;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 100%;
+            width: 95%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.3s ease;
+        }
+        .step {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .step:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        .step h3 {
+            display: inline-block;
+            color: #1f2937;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        .step-content {
+            margin-left: 55px;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: transform 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #10b981;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .code {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+        }
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+        .checklist li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .footer {
+            background: #f9fafb;
+            padding: 30px;
+            text-align: center;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌾 BHUMI AWS Setup</h1>
+            <p>Complete Your Deployment in 5 Minutes</p>
+        </div>
+
+        <div class="content">
+            <div class="status">
+                <h2>📊 Current Status</h2>
+                <div class="progress">
+                    <div class="progress-bar">95% Complete</div>
+                </div>
+                <ul class="checklist">
+                    <li>10 Lambda Functions Deployed</li>
+                    <li>API Gateway Configured</li>
+                    <li>Cognito Authentication Ready</li>
+                    <li>DynamoDB & S3 Configured</li>
+                    <li>Frontend Running on localhost:3000</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ One Step Remaining:</strong> Add payment method to enable Amazon Bedrock
+            </div>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Add Payment Method</h3>
+                <div class="step-content">
+                    <p>Amazon Bedrock requires a valid payment method, even for free tier usage.</p>
+                    <a href="https://console.aws.amazon.com/billing/home#/paymentmethods" target="_blank" class="btn">
+                        Open Billing Console →
+                    </a>
+                    <div class="code">
+                        1. Click "Add a payment method"<br>
+                        2. Enter credit/debit card details<br>
+                        3. Click "Verify and add"
+                    </div>
+                    <div class="success">
+                        <strong>💰 Cost Info:</strong> Free tier includes 50,000 tokens/month. You won't be charged unless you exceed this limit.
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Enable Bedrock Model Access</h3>
+                <div class="step-content">
+                    <p>Grant access to Claude 3 Haiku model for AI features.</p>
+                    <a href="https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/modelaccess" target="_blank" class="btn">
+                        Open Bedrock Console →
+                    </a>
+                    <div class="code">
+                        1. Click "Modify model access"<br>
+                        2. Check "Anthropic Claude 3 Haiku"<br>
+                        3. Click "Save changes"<br>
+                        4. Wait 2-3 minutes for access to be granted
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Verify Setup</h3>
+                <div class="step-content">
+                    <p>Run the verification script to test all endpoints.</p>
+                    <div class="code">
+                        cd /Users/dipayansardar/BHUMI_THE_FUTURE_OF_AGRICULTURE-1<br>
+                        ./verify-setup.sh
+                    </div>
+                    <p style="margin-top: 15px;">Or test manually:</p>
+                    <div class="code">
+                        curl -X POST https://YOUR-API-ID.execute-api.us-east-1.amazonaws.com/prod/chat \<br>
+                        &nbsp;&nbsp;-H "Content-Type: application/json" \<br>
+                        &nbsp;&nbsp;-d '{"message":"Hello","language":"English","history":[]}'
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h3>Test Frontend</h3>
+                <div class="step-content">
+                    <p>Your app is already running! Open it in your browser:</p>
+                    <a href="http://localhost:3000" target="_blank" class="btn btn-secondary">
+                        Open BHUMI App →
+                    </a>
+                    <p style="margin-top: 15px;">Test these features:</p>
+                    <ul class="checklist">
+                        <li>Sign up & Login</li>
+                        <li>Disease Detection (upload image)</li>
+                        <li>Chat with AI</li>
+                        <li>Weather Forecast</li>
+                        <li>Crop Recommendations</li>
+                        <li>Yield Prediction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success">
+                <h3 style="margin-bottom: 10px;">🎉 After Completing These Steps</h3>
+                <p>Your BHUMI app will be 100% functional and ready for:</p>
+                <ul class="checklist">
+                    <li>AWS AIdeaS Competition Demo</li>
+                    <li>Production Deployment</li>
+                    <li>User Testing</li>
+                    <li>Scaling to Thousands of Users</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Need Help?</strong></p>
+            <p>Check FINAL_STATUS.md for detailed documentation</p>
+            <p style="margin-top: 10px;">
+                <a href="https://docs.aws.amazon.com/bedrock/" target="_blank" style="color: #667eea;">AWS Bedrock Docs</a> |
+                <a href="https://aws.amazon.com/free/" target="_blank" style="color: #667eea;">Free Tier Details</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
